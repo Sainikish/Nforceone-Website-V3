@@ -39,13 +39,6 @@ export const metadata = {
     "NForceOne is an AI, Quality Engineering, and Digital Transformation partner with deep Telecom expertise, delivering at enterprise scale through onshore US and offshore India teams.",
 };
 
-const CREDIBILITY_STRIP = [
-  "20+ Years of Technology & Quality Engineering Leadership",
-  "US + India Delivery",
-  "Telecom Domain Expertise",
-  "AI + Quality Engineering",
-];
-
 const PARTNERS = [
   { name: "Amazon Web Services", icon: CloudIcon },
   { name: "Microsoft Azure", icon: LayersIcon },
@@ -244,17 +237,6 @@ export default function Home() {
               </span>
             ))}
           </div>
-        </div>
-      </FadeIn>
-
-      {/* Credibility strip */}
-      <FadeIn delay={0.1}>
-        <div className={styles.credibilityStrip}>
-          {CREDIBILITY_STRIP.map((item) => (
-            <span key={item} className={styles.credibilityItem}>
-              {item}
-            </span>
-          ))}
         </div>
       </FadeIn>
 
