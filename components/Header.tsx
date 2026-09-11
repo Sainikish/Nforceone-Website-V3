@@ -62,8 +62,8 @@ const NAV_LINKS: NavLink[] = [
   { href: "/about", label: "About" },
   {
     href: "/services",
-    label: "Capabilities",
-    viewAllLabel: "View All Capabilities",
+    label: "Solutions",
+    viewAllLabel: "View All Solutions",
     groups: CAPABILITY_GROUPS,
     dropdown: CAPABILITY_GROUPS.flatMap((group) => group.items),
   },
@@ -80,11 +80,7 @@ const NAV_LINKS: NavLink[] = [
       { href: "/industries/digital-media-and-advertising", label: "Digital Media & AdTech" },
     ],
   },
-  { href: "/innovation", label: "Innovation & Products" },
-  { href: "/case-studies", label: "Case Studies" },
   { href: "/careers", label: "Careers" },
-  { href: "/contact", label: "Contact" },
-  { href: "/faq", label: "FAQ" },
 ];
 
 function isActiveLink(pathname: string, href: string) {
