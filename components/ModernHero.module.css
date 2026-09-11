@@ -1,0 +1,352 @@
+.heroSection {
+  position: relative;
+  background: #000000;
+  color: #ffffff;
+  padding: 2rem 1.5rem 4.5rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Ambient background lighting rays & blueprint grid */
+.heroBackgroundLight {
+  position: absolute;
+  top: -10%;
+  right: 5%;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(196, 39, 43, 0.14) 0%, rgba(255, 255, 255, 0.03) 35%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heroGridBackground {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse at 70% 50%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 70% 50%, black 30%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heroGrid {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+  align-items: center;
+  gap: 3rem;
+}
+
+.textCol {
+  min-width: 0;
+}
+
+.kicker {
+  margin: 0 0 1.25rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ef4444;
+}
+
+.headline {
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(1.9rem, 3.2vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin: 0 0 1.35rem;
+}
+
+.headlinePrimary {
+  display: block;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.headlineAccent {
+  display: block;
+  color: #ef4444;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+}
+
+.subhead {
+  font-size: clamp(1.02rem, 1.2vw, 1.14rem);
+  line-height: 1.65;
+  color: #a1a1aa;
+  max-width: 500px;
+  margin: 0 0 2rem;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.primaryCta {
+  display: inline-flex;
+  align-items: center;
+  background: #c4272b;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.95rem 1.85rem;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(196, 39, 43, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.primaryCta:hover {
+  transform: translateY(-2px);
+  background: #dc2626;
+  box-shadow: 0 12px 30px rgba(196, 39, 43, 0.45);
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.2rem;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.textLink:hover {
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+.textLinkArrow {
+  transition: transform 0.2s ease;
+}
+
+.textLink:hover .textLinkArrow {
+  transform: translateX(3px);
+}
+
+.statsStrip {
+  margin-top: 2.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.statValue {
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+  font-weight: 800;
+  color: #ef4444;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.statLabel {
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #a1a1aa;
+  line-height: 1.35;
+}
+
+/* Illustration / 3D Cube container - Seamless floating in hero, NO CARD */
+.illustrationCol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.cubeContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 1 / 1;
+}
+
+.cubeAura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 39, 43, 0.18) 0%, rgba(255, 255, 255, 0.04) 40%, transparent 70%);
+  filter: blur(30px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cubeFloorShadow {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 24px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.95) 0%, transparent 75%);
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cubeVideo {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8));
+}
+
+.cubeLogoOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cubeLogo {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+  filter: 
+    drop-shadow(0 8px 18px rgba(0, 0, 0, 0.98))
+    drop-shadow(0 0 24px rgba(220, 38, 38, 0.5));
+  animation: floatEmblem 3s ease-in-out infinite;
+}
+
+@keyframes floatEmblem {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.02);
+  }
+}
+
+@media (max-width: 900px) {
+  .heroSection {
+    padding-top: 1.5rem;
+  }
+
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .subhead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ctaRow {
+    justify-content: center;
+  }
+
+  .illustrationCol {
+    order: -1;
+  }
+
+  .cubeContainer {
+    max-width: 320px;
+  }
+
+  .cubeVideo {
+    max-width: 290px;
+  }
+
+  .cubeLogo {
+    width: 105px;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroSection {
+    padding: 3.5rem 1.25rem 3rem;
+  }
+
+  .headline {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+  }
+
+  .subhead {
+    font-size: 0.98rem;
+  }
+
+  .ctaRow {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .primaryCta {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .textLink {
+    justify-content: center;
+  }
+
+  .cubeContainer {
+    max-width: 260px;
+  }
+
+  .cubeVideo {
+    max-width: 240px;
+  }
+
+  .cubeLogo {
+    width: 85px;
+  }
+
+  .statsStrip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 1rem;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .headlinePrimary,
+  .headlineAccent {
+    white-space: normal;
+  }
+}

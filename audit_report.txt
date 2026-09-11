@@ -1,0 +1,44 @@
+I went through all 9 pages at desktop, tablet, and mobile widths, plus interaction states (mega-menu, form validation, chat, mobile drawer, 404). Here's the review, organized by severity.
+
+## 🔴 Critical — breaks the experience, fix first
+
+**1. Two-column layouts don't collapse on mobile — including the Contact page.** Several sections use inline `grid-template-columns` with no responsive rule, so at phone widths the two columns squeeze side-by-side and get clipped:
+- **Contact page**: the lead form and "Our Locations" column overlap and cut off — this is your primary conversion page, unusable on mobile right now.
+- **Capabilities**: all 4 pillar sections (text + card) do the same.
+- **Home**: the Telecom differentiator section clips its practice-areas card.
+- **About**: the "who we are" two-column intro.
+- **Industries**: the featured Telecom banner.
+
+**2. Header CTA button text is clipped on mobile.** "TALK TO AN EXPERT" overflows the viewport at 390px width, on every page, in the sticky header — visible on every single screen the whole time you scroll.
+
+**3. Floating chat launcher overlaps content while scrolling on mobile.** It sits fixed bottom-right and covers real text (credibility strip items, card copy) at several scroll positions rather than just floating over empty space.
+
+## 🟠 High — real usability/trust problems
+
+**4. Status pills are unreadable on white cards.** "Sample Case Study" / "Concept" pills use light silver text on a near-white background inside `.section-light` cards — same class of contrast bug I fixed elsewhere, just missed this one.
+
+**5. No custom form validation styling.** Submitting the Contact form empty triggers the browser's stock "Please fill out this field" tooltip — functional, but it's a jarring, off-brand system UI moment on an otherwise premium-looking form. No inline error states, no success confirmation beyond the button label swap.
+
+**6. No branded 404 page.** Hitting any bad URL shows a bare unstyled "404 / The requested path could not be found" — no nav, no logo, no way back into the site.
+
+**7. Career listings are identical.** All 5 open roles show the exact same generic blurb ("Open role — reach out to express interest...") with no location, seniority, or team info — reads as a placeholder page, not real openings, even accounting for it being demo content.
+
+## 🟡 Medium — polish & consistency
+
+**8. Weak visual hierarchy between primary and secondary CTAs.** `.btn-primary` and `.btn-orange` are both solid red/crimson gradients of similar weight — "Talk to an Expert" and "Explore Our Capabilities" compete rather than one clearly leading. A true secondary style (outline/ghost) for the second CTA in every pair would fix this site-wide.
+
+**9. Sticky pillar sub-nav (Capabilities page) breaks down on mobile.** The 4 anchor links don't wrap into tidy pills at narrow widths — they stack as plain text and crowd the sticky header.
+
+**10. Telecom page is thin relative to its billing as "deep domain differentiator."** No diagram/architecture visual, no telecom-specific case study on the page itself (PRD asked for animated workflow visuals here) — currently just icon cards + generic CTA, same treatment as any other page.
+
+**11. Repeated stock imagery across pages.** The same 4 images (hero_bg, ai_cloud, qa_dashboard, team_collaboration) appear on Home, Capabilities, and About — a user browsing multiple pages will notice the repetition even knowing it's placeholder art.
+
+## 🟢 Low — nice-to-have
+
+**12. Odd-numbered grids leave a lonely last item** (5 credibility items in a 2-col mobile grid, 5 job cards, 9 industry cards) — not broken, just slightly unbalanced visually.
+**13. No skip-to-content visual affordance test beyond keyboard** — worth a quick keyboard-only pass (Tab through mega-menus, chat widget, form) to confirm focus order is logical.
+**14. Small muted text** (`#A79E97` labels/attributions at ~0.8rem) is worth a contrast-ratio check — likely borderline for WCAG AA at that size.
+
+---
+
+**My recommendation on order of attack:** fix #1–3 first (they actively break the site on mobile, and Contact is your money page), then #4–6, then decide how much of #8–11 is worth it before real content/photography lands. Want me to start on the critical mobile-layout fixes?

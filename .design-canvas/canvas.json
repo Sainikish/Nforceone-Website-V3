@@ -1,0 +1,15 @@
+{
+  "artboards": [
+    { "file": "DirectionA.dc.html", "x": 0, "y": 0, "w": 1280, "h": 1500 },
+    { "file": "DirectionB.dc.html", "x": 1400, "y": 0, "w": 1280, "h": 1400 },
+    { "file": "DirectionC.dc.html", "x": 2800, "y": 0, "w": 1280, "h": 1350 },
+    { "file": "Main.dc.html", "x": 0, "y": 1650, "w": 1280, "h": 1500 }
+  ],
+  "annotations": [
+    { "id": "note-a", "x": 0, "y": -140, "w": 420, "text": "Option A - Confident Minimal\nBlack/white, red used only twice (headline word + hairline). Thin borders, no shadows. Quiet-luxury consulting-firm register.\nTrade-off: safest but least distinctive." },
+    { "id": "note-b", "x": 1400, "y": -140, "w": 420, "text": "Option B - Bold Technical\nDark navy base, red used energetically, geometric grid + diagonal light, heavy display type. Reads as a company that builds hard technical systems.\nTrade-off: highest visual energy, but a bigger departure from the current site." },
+    { "id": "note-c", "x": 2800, "y": -140, "w": 420, "text": "Option C - Warm Enterprise\nWarm off-white base, soft shadows, rounded cards, friendly modern-SaaS register (Stripe/Attio-adjacent).\nTrade-off: most approachable, but softer/less \"enterprise-serious\" than A or B." },
+    { "id": "note-main", "x": 0, "y": 1510, "w": 420, "text": "Main - currently holds Option A as the leading candidate. Pick a direction above and I'll build the final version here." }
+  ],
+  "launch": { "view": "canvas" }
+}

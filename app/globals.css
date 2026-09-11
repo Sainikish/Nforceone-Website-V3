@@ -1,0 +1,121 @@
+/* Tailwind v4, utilities-only (preflight/base reset intentionally excluded so
+   the existing hand-rolled CSS Modules design system is left untouched). */
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+@source "../components";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --accent: #e60000;
+  --accent-hover: #cc0000;
+  --accent-dark: #990000;
+  --muted: #6b7280;
+  --surface: #f7f7f8;
+  --border: #e5e7eb;
+  --shadow-sm: 0 1px 2px rgba(10, 10, 10, 0.04);
+  --shadow-md: 0 8px 24px rgba(10, 10, 10, 0.08);
+  --shadow-lg: 0 20px 48px rgba(10, 10, 10, 0.16);
+  --radius: 14px;
+  --header-height: 84px;
+}
+
+/* Tailwind's `@theme` values are resolved and inlined into utility classes at
+   build time (they are design tokens, not a live runtime var() indirection),
+   so these can't just alias the site's light-theme `--background`/`--foreground`
+   above - a component using bg-background would statically bake in white/black.
+   The only current consumer of these shadcn-style utilities (bg-background,
+   text-foreground, text-muted-foreground) is the cinematic hero, which is
+   deliberately dark/premium, so these tokens are defined dark directly. If a
+   light-themed component ever needs these utilities too, this will need to
+   become a real light/dark theme switch instead of a single fixed palette. */
+@theme {
+  --color-background: #05060a;
+  --color-foreground: #ffffff;
+  --color-muted-foreground: #a1a1aa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding-top: var(--header-height);
+  max-width: 100%;
+  overflow-x: hidden;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-body), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading), var(--font-body), system-ui, sans-serif;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+p {
+  line-height: 1.65;
+}
+
+a {
+  color: inherit;
+}
+
+/* Visible keyboard-focus ring on every interactive element. Only shows for
+   keyboard/programmatic focus (not mouse clicks), and works on both light
+   and dark sections via the offset + shadow combo below. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 4px rgba(230, 0, 0, 0.15);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

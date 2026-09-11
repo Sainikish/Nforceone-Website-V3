@@ -1,0 +1,104 @@
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem;
+}
+
+.section h2 {
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.centeredBody {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.locations {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+  align-items: stretch;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.locationWrapper {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.location {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.location:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: #d4d4d8;
+}
+
+.location h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.locationTag {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0 0 1.25rem;
+  min-height: 1.3rem;
+}
+
+.location address {
+  font-style: normal;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0 0 1.5rem;
+  flex-grow: 1;
+}
+
+.location a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: auto;
+  width: fit-content;
+}
+
+.location a:hover {
+  text-decoration: underline;
+}
+
+.sectionAlt {
+  background: var(--surface);
+}
+
+@media (max-width: 680px) {
+  .locations {
+    grid-template-columns: 1fr;
+  }
+}

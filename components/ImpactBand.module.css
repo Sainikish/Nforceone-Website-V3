@@ -1,0 +1,38 @@
+.band {
+  background: var(--foreground);
+  color: #fff;
+  margin-top: 3rem;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem;
+}
+
+.heading {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-align: center;
+  margin: 0 0 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.item h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.item p {
+  margin: 0;
+  color: #d1d5db;
+  font-size: 0.95rem;
+}
