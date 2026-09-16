@@ -304,14 +304,40 @@ export default function Home() {
       {/* About / engineering excellence */}
       <section className={`${styles.section} ${styles.sectionAlt}`}>
         <div className={styles.splitLayout}>
-          <FadeIn className={styles.splitImage}>
-            <Image
-              src="/images/capabilities-office.jpg"
-              alt="NForceOne engineering team at work"
-              width={800}
-              height={600}
-              style={{ width: "100%", height: "auto", borderRadius: "var(--radius)" }}
-            />
+          <FadeIn className={styles.splitCollage}>
+            <div className={styles.collageGrid}>
+              <div className={styles.collageMain}>
+                <Image
+                  src="/images/team-1.png"
+                  alt="NForceOne engineering team in Hyderabad"
+                  width={800}
+                  height={368}
+                  className={styles.collageImg}
+                  priority
+                />
+              </div>
+
+              <div className={styles.collageSubRow}>
+                <div className={styles.collageSubItem}>
+                  <Image
+                    src="/images/team-2.png"
+                    alt="NForceOne team collaboration"
+                    width={400}
+                    height={184}
+                    className={styles.collageImg}
+                  />
+                </div>
+                <div className={styles.collageSubItem}>
+                  <Image
+                    src="/images/team-3.png"
+                    alt="NForceOne engineering summit"
+                    width={400}
+                    height={184}
+                    className={styles.collageImg}
+                  />
+                </div>
+              </div>
+            </div>
           </FadeIn>
           <div className={styles.splitContent}>
             <FadeIn>
