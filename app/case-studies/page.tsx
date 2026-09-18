@@ -20,7 +20,7 @@ export default function CaseStudiesIndex() {
         eyebrow="Case Studies"
         title="Real Results, Measurable Impact"
         subtitle="Discover how NForceOne partners with enterprises and hyper-growth teams to engineer quality, streamline workflows, and accelerate software delivery."
-        image="/images/dashboard-analytics.jpg"
+        image="/images/Team11.png"
       />
 
       <section className={styles.section}>

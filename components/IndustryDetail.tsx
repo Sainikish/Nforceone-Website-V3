@@ -17,7 +17,7 @@ export default function IndustryDetail({ industry }: { industry: IndustryItem })
         eyebrow="Industries"
         title={industry.title}
         subtitle={industry.tagline}
-        image="/images/industries-hero.jpg"
+        image="/images/Team6.png"
       />
 
       <section className={styles.section}>

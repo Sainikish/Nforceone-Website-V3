@@ -8,17 +8,27 @@ export default function PageHero({
   title,
   subtitle,
   image,
+  imagePosition,
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
   image?: string;
+  imagePosition?: string;
 }) {
   if (image) {
     return (
       <section className={styles.banner}>
         <div className={styles.bannerBg}>
-          <Image src={image} alt="" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
+          <Image
+            src={image}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            quality={95}
+            style={{ objectFit: "cover", objectPosition: imagePosition || "center 40%" }}
+          />
         </div>
         <div className={styles.bannerOverlay} />
         <FadeIn className={styles.bannerInner}>

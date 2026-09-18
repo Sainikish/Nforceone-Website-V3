@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -91,8 +91,75 @@ function isActiveLink(pathname: string, href: string) {
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [isPinned, setIsPinned] = useState(false);
   const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
   const pathname = usePathname();
+  const navRef = useRef<HTMLElement>(null);
+  const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const closeDropdown = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setOpenDropdown(null);
+    setIsPinned(false);
+  };
+
+  const handleMouseEnter = (href: string) => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    if (openDropdown !== href) {
+      setIsPinned(false);
+    }
+    setOpenDropdown(href);
+  };
+
+  const handleMouseLeave = () => {
+    if (isPinned) return;
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+    }
+    closeTimerRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 220);
+  };
+
+  const handleTriggerClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    if (openDropdown === href && isPinned) {
+      closeDropdown();
+    } else {
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
+        closeTimerRef.current = null;
+      }
+      setOpenDropdown(href);
+      setIsPinned(true);
+    }
+  };
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        closeDropdown();
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    closeDropdown();
+  }, [pathname]);
 
   const isHome = pathname === "/";
   const [scrolledPastHero, setScrolledPastHero] = useState(!isHome);
@@ -132,7 +199,7 @@ export default function Header() {
             className={styles.logoImage}
           />
         </Link>
-        <nav className={styles.nav}>
+        <nav className={styles.nav} ref={navRef}>
           {NAV_LINKS.map((link) => {
             const active = isActiveLink(pathname, link.href);
             if (!link.dropdown) {
@@ -142,6 +209,15 @@ export default function Header() {
                   href={link.href}
                   className={active ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink}
                   aria-current={active ? "page" : undefined}
+                  onMouseEnter={() => {
+                    if (!isPinned) {
+                      if (closeTimerRef.current) {
+                        clearTimeout(closeTimerRef.current);
+                        closeTimerRef.current = null;
+                      }
+                      setOpenDropdown(null);
+                    }
+                  }}
                 >
                   {link.label}
                 </Link>
@@ -152,52 +228,83 @@ export default function Header() {
               <div
                 key={link.href}
                 className={styles.navItem}
-                onMouseEnter={() => setOpenDropdown(link.href)}
-                onMouseLeave={() => setOpenDropdown(null)}
-                onBlur={(e) => {
-                  if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-                    setOpenDropdown(null);
-                  }
-                }}
+                onMouseEnter={() => handleMouseEnter(link.href)}
+                onMouseLeave={handleMouseLeave}
               >
                 <Link
                   href={link.href}
                   className={active ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink}
                   aria-current={active ? "page" : undefined}
                   aria-expanded={dropdownOpen}
-                  onFocus={() => setOpenDropdown(link.href)}
+                  onClick={(e) => handleTriggerClick(e, link.href)}
+                  onFocus={() => handleMouseEnter(link.href)}
                   onKeyDown={(e) => {
-                    if (e.key === "Escape") setOpenDropdown(null);
+                    if (e.key === "Escape") closeDropdown();
                   }}
                 >
                   {link.label}
-                  <span className={styles.navChevron} aria-hidden="true" />
+                  <span
+                    className={`${styles.navChevron} ${dropdownOpen ? styles.navChevronOpen : ""}`}
+                    aria-hidden="true"
+                  />
                 </Link>
                 {dropdownOpen && link.groups && (
-                  <div className={styles.navMegaMenu} role="menu">
+                  <div
+                    className={styles.navMegaMenu}
+                    role="menu"
+                    onMouseEnter={() => handleMouseEnter(link.href)}
+                    onMouseLeave={handleMouseLeave}
+                  >
                     {link.groups.map((group) => (
                       <div key={group.title} className={styles.megaGroup}>
                         <p className={styles.megaGroupTitle}>{group.title}</p>
                         {group.items.map((sub) => (
-                          <Link key={sub.href} href={sub.href} className={styles.navDropdownLink} role="menuitem">
+                          <Link
+                            key={sub.href}
+                            href={sub.href}
+                            className={styles.navDropdownLink}
+                            role="menuitem"
+                            onClick={closeDropdown}
+                          >
                             {sub.label}
                           </Link>
                         ))}
                       </div>
                     ))}
-                    <Link href={link.href} className={styles.navMegaMenuViewAll} role="menuitem">
+                    <Link
+                      href={link.href}
+                      className={styles.navMegaMenuViewAll}
+                      role="menuitem"
+                      onClick={closeDropdown}
+                    >
                       {link.viewAllLabel} →
                     </Link>
                   </div>
                 )}
                 {dropdownOpen && !link.groups && (
-                  <div className={styles.navDropdown} role="menu">
+                  <div
+                    className={styles.navDropdown}
+                    role="menu"
+                    onMouseEnter={() => handleMouseEnter(link.href)}
+                    onMouseLeave={handleMouseLeave}
+                  >
                     {link.dropdown.map((sub) => (
-                      <Link key={sub.href} href={sub.href} className={styles.navDropdownLink} role="menuitem">
+                      <Link
+                        key={sub.href}
+                        href={sub.href}
+                        className={styles.navDropdownLink}
+                        role="menuitem"
+                        onClick={closeDropdown}
+                      >
                         {sub.label}
                       </Link>
                     ))}
-                    <Link href={link.href} className={styles.navDropdownViewAll} role="menuitem">
+                    <Link
+                      href={link.href}
+                      className={styles.navDropdownViewAll}
+                      role="menuitem"
+                      onClick={closeDropdown}
+                    >
                       {link.viewAllLabel} →
                     </Link>
                   </div>

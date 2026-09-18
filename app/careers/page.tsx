@@ -62,15 +62,15 @@ export default function CareersPage() {
         eyebrow="Careers"
         title="Start Your Journey with NForceOne"
         subtitle="Grow your career as we scale. Join a high-caliber team transforming software quality and digital resilience for global enterprises."
-        image="/images/careers-team.jpg"
+        image="/images/Team8.png"
       />
 
       <section className={styles.section}>
         <div className={styles.splitLayout}>
           <FadeIn className={styles.splitImage}>
             <Image
-              src="/images/careers-culture.jpg"
-              alt="NForceOne team culture and collaboration"
+              src="/images/Team4.png"
+              alt="NForceOne engineering culture and high-performance team"
               width={800}
               height={600}
               style={{ width: "100%", height: "auto", borderRadius: "var(--radius)" }}

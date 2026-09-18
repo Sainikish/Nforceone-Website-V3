@@ -22,20 +22,34 @@ const DEV_CATEGORY_SLUGS = new Set([
 ]);
 
 const SLUG_IMAGES: Record<string, string> = {
-  "quality-assurance": "/images/qa-generic.jpg",
-  "software-development": "/images/dev-generic.jpg",
-  "artificial-intelligence": "/images/ai-generic.jpg",
-  "pega-development": "/images/pega-development.jpg",
-  "pega-testing": "/images/pega-testing.jpg",
-  devops: "/images/devops-generic.webp",
-  "database-management": "/images/database-generic.webp",
-  "data-analytics": "/images/data-analytics.webp",
+  "quality-assurance": "/images/Team9.png",
+  "automation-testing": "/images/Team7.png",
+  "ai-assurance": "/images/Team9.png",
+  "software-development": "/images/Team12.png",
+  "artificial-intelligence": "/images/Team6.png",
+  "intelligent-rpa": "/images/Team7.png",
+  "pega-development": "/images/Team4.png",
+  "pega-testing": "/images/Team7.png",
+  devops: "/images/Team8.png",
+  "database-management": "/images/Team8.png",
+  "data-analytics": "/images/Team11.png",
+};
+
+const SLUG_POSITIONS: Record<string, string> = {
+  "software-development": "center 35%",
+  "pega-development": "center 35%",
+  "quality-assurance": "center 45%",
+  "automation-testing": "center 38%",
+  "ai-assurance": "center 45%",
+  "devops": "center 40%",
+  "data-analytics": "center 45%",
 };
 
 export default function ServiceDetail({ service }: { service: ServiceItem }) {
   const bannerImage =
     SLUG_IMAGES[service.slug] ??
-    (DEV_CATEGORY_SLUGS.has(service.slug) ? "/images/dev-generic.jpg" : "/images/qa-generic.jpg");
+    (DEV_CATEGORY_SLUGS.has(service.slug) ? "/images/Team12.png" : "/images/Team9.png");
+  const bannerPosition = SLUG_POSITIONS[service.slug] ?? "center 40%";
 
   return (
     <main>
@@ -44,6 +58,7 @@ export default function ServiceDetail({ service }: { service: ServiceItem }) {
         title={service.title}
         subtitle={service.intro}
         image={bannerImage}
+        imagePosition={bannerPosition}
       />
 
       <section className={styles.section}>

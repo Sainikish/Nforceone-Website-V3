@@ -28,7 +28,8 @@ export default function ContactPage() {
         eyebrow="Contact"
         title="We're Here to Help"
         subtitle="Questions about QA, AI, CI/CD, cloud migration, or security automation? Reach out and we'll connect you with a solutions expert."
-        image="/images/contact-hero.jpg"
+        image="/images/Team10.png"
+        imagePosition="center 30%"
       />
 
       <section className={styles.section}>

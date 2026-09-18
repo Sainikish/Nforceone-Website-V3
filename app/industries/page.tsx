@@ -19,15 +19,15 @@ export default function IndustriesIndex() {
         eyebrow="Industries"
         title="Industry Expertise"
         subtitle="Over 10 years of experience serving IT needs across industries, understanding sector specifics and building matching IT strategies."
-        image="/images/industries-hero.jpg"
+        image="/images/Team6.png"
       />
 
       <section className={styles.section}>
         <div className={`${styles.splitLayout} ${styles.splitReverse}`}>
           <FadeIn className={styles.splitImage}>
             <Image
-              src="/images/team-meeting.jpg"
-              alt="NForceOne team planning an industry-specific engagement"
+              src="/images/Team11.png"
+              alt="NForceOne industry solutions engineering squads"
               width={800}
               height={600}
               style={{ width: "100%", height: "auto", borderRadius: "var(--radius)" }}

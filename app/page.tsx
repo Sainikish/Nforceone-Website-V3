@@ -487,12 +487,16 @@ export default function Home() {
           </FadeIn>
           <FadeIn delay={0.15} className={styles.spotlightImageFrame}>
             <Image
-              src="/images/dashboard-analytics.jpg"
-              alt=""
+              src="/images/team-engineering-collab.jpg"
+              alt="NForceOne engineering team reviewing automated regression suite & CI/CD release pipeline telemetry on screen"
               fill
               sizes="(max-width: 860px) 100vw, 40vw"
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "cover", objectPosition: "left center" }}
             />
+            <div className={styles.spotlightTeamBadge}>
+              <span className={styles.spotlightTeamDot} />
+              <span>NForceOne QA Automation Suite · 100% Passing</span>
+            </div>
           </FadeIn>
         </div>
       </section>

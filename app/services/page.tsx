@@ -57,15 +57,16 @@ export default function ServicesIndex() {
         eyebrow="Services"
         title="Services & Solutions"
         subtitle="Comprehensive IT services for businesses, from QA and testing to software development, AI, and DevOps."
-        image="/images/services-hero.jpg"
+        image="/images/Team7.png"
+        imagePosition="center 38%"
       />
 
       <section className={styles.section}>
         <div className={styles.splitLayout}>
           <FadeIn className={styles.splitImage}>
             <Image
-              src="/images/dev-generic.jpg"
-              alt="NForceOne engineers pair programming"
+              src="/images/Team5.png"
+              alt="NForceOne engineers pair programming and reviewing code"
               width={800}
               height={600}
               style={{ width: "100%", height: "auto", borderRadius: "var(--radius)" }}

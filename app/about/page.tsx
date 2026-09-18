@@ -25,7 +25,7 @@ export default function AboutPage() {
         eyebrow="About"
         title="Building a Better Tomorrow"
         subtitle="We're digital changemakers here to disrupt old ideas, blaze new trails, and help enterprises transform and scale at unparalleled speed."
-        image="/images/about-culture.jpg"
+        image="/images/Team6.png"
       />
 
       <section className={styles.section}>
@@ -56,8 +56,8 @@ export default function AboutPage() {
         <div className={styles.splitLayout}>
           <FadeIn className={styles.splitImage}>
             <Image
-              src="/images/team-meeting.jpg"
-              alt="NForceOne team collaborating in a planning session"
+              src="/images/Team10.png"
+              alt="NForceOne senior leadership and engineering team"
               width={800}
               height={600}
               style={{ width: "100%", height: "auto", borderRadius: "var(--radius)" }}
