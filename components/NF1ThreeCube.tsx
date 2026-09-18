@@ -280,28 +280,6 @@ export default function NF1ThreeCube() {
 
     const startTime = performance.now();
 
-    // Mouse interaction tracking
-    let targetMouseX = 0;
-    let targetMouseY = 0;
-    let currentMouseX = 0;
-    let currentMouseY = 0;
-
-    const onPointerMove = (e: PointerEvent) => {
-      const rect = container.getBoundingClientRect();
-      const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      const ny = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
-      targetMouseX = nx * 0.35;
-      targetMouseY = ny * 0.35;
-    };
-
-    const onPointerLeave = () => {
-      targetMouseX = 0;
-      targetMouseY = 0;
-    };
-
-    container.addEventListener("pointermove", onPointerMove);
-    container.addEventListener("pointerleave", onPointerLeave);
-
     // Easing helpers
     const easeInOutCubic = (t: number) =>
       t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -328,10 +306,6 @@ export default function NF1ThreeCube() {
       const elapsed = (now - startTime) / 1000;
       const cycleTime = elapsed % CYCLE_DURATION;
 
-      // Smooth mouse tracking interpolation
-      currentMouseX += (targetMouseX - currentMouseX) * 0.06;
-      currentMouseY += (targetMouseY - currentMouseY) * 0.06;
-
       if (cycleTime < ROLLING_DURATION) {
         // ==========================================
         // PHASE 1: REAL CUBE ROLLING WITH 3 PARTS
@@ -354,12 +328,12 @@ export default function NF1ThreeCube() {
           const targetX = Math.round(gentlePitch / (Math.PI * 2)) * Math.PI * 2;
           const targetZ = 0;
 
-          cubeGroup.rotation.x = THREE.MathUtils.lerp(gentlePitch, targetX, ease) + currentMouseY;
-          cubeGroup.rotation.y = THREE.MathUtils.lerp(gentleYaw, targetY, ease) + currentMouseX;
+          cubeGroup.rotation.x = THREE.MathUtils.lerp(gentlePitch, targetX, ease);
+          cubeGroup.rotation.y = THREE.MathUtils.lerp(gentleYaw, targetY, ease);
           cubeGroup.rotation.z = THREE.MathUtils.lerp(gentleRoll, targetZ, ease);
         } else {
-          cubeGroup.rotation.x = gentlePitch + currentMouseY;
-          cubeGroup.rotation.y = gentleYaw + currentMouseX;
+          cubeGroup.rotation.x = gentlePitch;
+          cubeGroup.rotation.y = gentleYaw;
           cubeGroup.rotation.z = gentleRoll;
         }
 
@@ -428,9 +402,9 @@ export default function NF1ThreeCube() {
         midPartGroup.rotation.y = 0;
         bottomPartGroup.rotation.y = 0;
 
-        // Locked perfectly front-facing with subtle mouse parallax
-        cubeGroup.rotation.x = currentMouseY * 0.8;
-        cubeGroup.rotation.y = currentMouseX * 0.8;
+        // Locked perfectly front-facing
+        cubeGroup.rotation.x = 0;
+        cubeGroup.rotation.y = 0;
         cubeGroup.rotation.z = 0;
 
         // Slow, elegant specular sheen sweeps across the face during the 5 seconds
@@ -462,8 +436,6 @@ export default function NF1ThreeCube() {
       isDisposed = true;
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
-      container.removeEventListener("pointermove", onPointerMove);
-      container.removeEventListener("pointerleave", onPointerLeave);
 
       // Dispose geometries and materials
       cubeGroup.traverse((child) => {

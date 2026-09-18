@@ -19,11 +19,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: grab;
-}
-
-.canvasContainer:active {
-  cursor: grabbing;
+  pointer-events: none;
+  cursor: default;
 }
 
 .cubeAura {
