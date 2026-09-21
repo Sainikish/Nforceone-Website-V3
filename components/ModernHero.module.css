@@ -162,6 +162,7 @@
   color: #ef4444;
   letter-spacing: -0.02em;
   line-height: 1.1;
+  font-variant-numeric: tabular-nums;
 }
 
 .statLabel {

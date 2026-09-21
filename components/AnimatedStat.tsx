@@ -6,10 +6,12 @@ import { useReducedMotion } from "framer-motion";
 function AnimatedNumber({
   target,
   duration = 1600,
+  delay = 0,
   inView,
 }: {
   target: number;
   duration?: number;
+  delay?: number;
   inView: boolean;
 }) {
   const [value, setValue] = useState(0);
@@ -28,7 +30,15 @@ function AnimatedNumber({
     function step(timestamp: number) {
       if (startRef.current === null) startRef.current = timestamp;
       const elapsed = timestamp - startRef.current;
-      const progress = Math.min(elapsed / duration, 1);
+
+      if (elapsed < delay) {
+        setValue(0);
+        raf = requestAnimationFrame(step);
+        return;
+      }
+
+      const activeElapsed = elapsed - delay;
+      const progress = Math.min(activeElapsed / duration, 1);
       // Smooth cubic out easing for natural deceleration
       const eased = 1 - Math.pow(1 - progress, 3);
       setValue(Math.round(eased * target));
@@ -38,7 +48,7 @@ function AnimatedNumber({
     }
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [inView, target, duration, shouldReduceMotion]);
+  }, [inView, target, duration, delay, shouldReduceMotion]);
 
   return <>{value}</>;
 }
@@ -46,9 +56,11 @@ function AnimatedNumber({
 export default function AnimatedStat({
   value,
   duration = 1600,
+  delay = 0,
 }: {
   value: string;
   duration?: number;
+  delay?: number;
 }) {
   const containerRef = useRef<HTMLSpanElement>(null);
   const [inView, setInView] = useState(false);
@@ -86,6 +98,7 @@ export default function AnimatedStat({
             key={i}
             target={parseInt(part, 10)}
             duration={duration}
+            delay={delay}
             inView={inView}
           />
         ) : (

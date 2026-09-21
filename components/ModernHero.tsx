@@ -82,12 +82,12 @@ export default function ModernHero() {
             className={styles.statsStrip}
             initial={shouldReduceMotion ? undefined : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.55, ease: "easeOut" }}
+            transition={{ duration: 0.5, delay: 0.45, ease: "easeOut" }}
           >
             {STATS.map((stat) => (
               <div key={stat.label} className={styles.statItem}>
                 <div className={styles.statValue}>
-                  <AnimatedStat value={stat.value} />
+                  <AnimatedStat value={stat.value} delay={700} duration={1800} />
                 </div>
                 <div className={styles.statLabel}>{stat.label}</div>
               </div>
