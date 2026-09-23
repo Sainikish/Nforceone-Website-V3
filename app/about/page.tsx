@@ -22,10 +22,10 @@ export default function AboutPage() {
   return (
     <main>
       <PageHero
-        eyebrow="About"
         title="Building a Better Tomorrow"
         subtitle="We're digital changemakers here to disrupt old ideas, blaze new trails, and help enterprises transform and scale at unparalleled speed."
         image="/images/Team6.png"
+        imagePosition="center 65%"
       />
 
       <section className={styles.section}>
