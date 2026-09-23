@@ -143,7 +143,7 @@ const FEATURED_INDUSTRIES = [
     title: "Telecommunications & 5G",
     tagline: "Empowering Connectivity, Edge Infrastructure & Subscriber Platforms",
     icon: SignalBarsIcon,
-    impact: "99.999% SLA Uptime",
+    impact: "Signature Domain Expertise",
     signature: true,
     capabilities: [
       "5G & Edge Infrastructure Modernization",
@@ -156,7 +156,7 @@ const FEATURED_INDUSTRIES = [
     title: "Banking & Financial Services",
     tagline: "Secure, High-Frequency & Regulatory Compliant Platforms",
     icon: BankIcon,
-    impact: "99.999% Reliability",
+    impact: "Regulatory-Grade Engineering",
     capabilities: [
       "Core Banking Modernization",
       "PCI-DSS / SOC2 Automation",
@@ -168,7 +168,7 @@ const FEATURED_INDUSTRIES = [
     title: "Automotive & Smart Mobility",
     tagline: "Connected Vehicle Intelligence & Predictive Telematics",
     icon: CarIcon,
-    impact: "Zero Defect Escapes",
+    impact: "Safety-Critical Validation",
     capabilities: [
       "ISO 26262 Safety Validation",
       "OTA Firmware Pipelines",
@@ -180,7 +180,7 @@ const FEATURED_INDUSTRIES = [
     title: "Retail & E-Commerce",
     tagline: "Omnichannel Scale & Peak Black Friday Resilience",
     icon: ShoppingBagIcon,
-    impact: "10M+ Peak Concurrency",
+    impact: "Built for Peak-Season Scale",
     capabilities: [
       "High-Concurrency Load Testing",
       "Headless Checkout QA",
@@ -192,7 +192,7 @@ const FEATURED_INDUSTRIES = [
     title: "Insurance & InsurTech",
     tagline: "Regulated Claims Automation & Policyholder Platforms",
     icon: ShieldCheckIcon,
-    impact: "60% Faster Approvals",
+    impact: "Automated Claims Workflows",
     capabilities: [
       "Guidewire & Policy Migrations",
       "Automated Claims Adjudication",
@@ -204,7 +204,7 @@ const FEATURED_INDUSTRIES = [
     title: "Digital Media & AdTech",
     tagline: "Programmatic Ad Tech, Streaming & Low-Latency Engines",
     icon: BroadcastIcon,
-    impact: "Sub-15ms Latency QA",
+    impact: "Low-Latency Engineering Focus",
     capabilities: [
       "High-Throughput RTB Pipelines",
       "Cross-Platform OTT & Mobile QA",
@@ -491,7 +491,7 @@ export default function Home() {
               alt="NForceOne engineering team reviewing automated regression suite & CI/CD release pipeline telemetry on screen"
               fill
               sizes="(max-width: 860px) 100vw, 40vw"
-              style={{ objectFit: "cover", objectPosition: "left center" }}
+              style={{ objectFit: "cover", objectPosition: "left top" }}
             />
             <div className={styles.spotlightTeamBadge}>
               <span className={styles.spotlightTeamDot} />
