@@ -150,12 +150,12 @@ export default function NF1ThreeCube() {
 
       // Draw the complete HD NForceOne logo with balanced, authentic spacing between NF1 and Let's Do IT!
       if (logoImg.complete && logoImg.naturalWidth > 0) {
-        const scale = 0.72;
+        const scale = 986.4 / logoImg.naturalWidth;
         const logoW = Math.round(logoImg.naturalWidth * scale);
         const logoH = Math.round(logoImg.naturalHeight * scale);
         const logoX = Math.round((1024 - logoW) / 2);
         // Align the valley between NF1 and Let's Do IT with the horizontal cubie seam at y = 682
-        const logoY = Math.round(682 - 608 * scale);
+        const logoY = Math.round(682 - 1031 * scale);
 
         // Radiant brand glow behind the artwork
         mCtx.shadowColor = "rgba(239, 68, 68, 0.65)";
