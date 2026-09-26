@@ -62,8 +62,8 @@ const NAV_LINKS: NavLink[] = [
   { href: "/about", label: "About" },
   {
     href: "/services",
-    label: "Solutions",
-    viewAllLabel: "View All Solutions",
+    label: "Services",
+    viewAllLabel: "View All Services",
     groups: CAPABILITY_GROUPS,
     dropdown: CAPABILITY_GROUPS.flatMap((group) => group.items),
   },

@@ -777,6 +777,8 @@
 
 .sectionAlt {
   background: var(--surface);
+  box-shadow: 0 0 0 100vmax var(--surface);
+  clip-path: inset(0 -100vmax);
 }
 
 .splitLayout {
@@ -1183,28 +1185,13 @@
 
 /* Testimonial spotlight */
 .testimonialSpotlight {
-  background: transparent;
-  padding: 4.5rem 2rem;
-}
-
-.spotlightGrid {
-  max-width: 1200px;
-  margin: 0 auto;
   background: linear-gradient(135deg, #111216 0%, #08080a 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.06);
-  padding: 3.5rem 3rem;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 3rem;
-  align-items: center;
-  text-align: left;
+  padding: 4.5rem 2rem;
   position: relative;
   overflow: hidden;
 }
 
-.spotlightGrid::before {
+.testimonialSpotlight::before {
   content: '';
   position: absolute;
   top: 0;
@@ -1213,6 +1200,17 @@
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(230, 0, 0, 0.45), transparent);
   pointer-events: none;
+}
+
+.spotlightGrid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+  text-align: left;
+  position: relative;
 }
 
 .spotlightImageFrame {
@@ -1364,8 +1362,6 @@
   .spotlightGrid {
     grid-template-columns: 1fr;
     gap: 2rem;
-    padding: 2.5rem 1.75rem;
-    border-radius: 20px;
   }
 
   .spotlightImageFrame {

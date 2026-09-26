@@ -2,9 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import AnimatedHeading from "@/components/AnimatedHeading";
+import AnimatedStat from "@/components/AnimatedStat";
 import ModernHero from "@/components/ModernHero";
 import FaqAccordion from "@/components/FaqAccordion";
 import AboutBento from "@/components/ui/about-bento";
+import { StandardCards } from "@/components/ui/standard-card";
 import EngagementCarousel from "@/components/EngagementCarousel";
 import { sharedFaq } from "@/lib/faq-data";
 import { caseStudies } from "@/lib/case-studies-data";
@@ -39,6 +41,13 @@ export const metadata = {
     "NForceOne is an AI, Quality Engineering, and Digital Transformation partner with deep Telecom expertise, delivering at enterprise scale through onshore US and offshore India teams.",
 };
 
+const STATS = [
+  { value: "8+", label: "Testing Services" },
+  { value: "24/7", label: "Quality Assurance" },
+  { value: "100%", label: "Coverage Focus" },
+  { value: "0", label: "Critical Defects" },
+];
+
 const PARTNERS = [
   { name: "Amazon Web Services", icon: CloudIcon },
   { name: "Microsoft Azure", icon: LayersIcon },
@@ -47,26 +56,6 @@ const PARTNERS = [
   { name: "Pegasystems", icon: GridIcon },
   { name: "Postman & Docker", icon: BoxIcon },
 ];
-
-const COMPARISON_ROWS = [
-  {
-    category: "QA & Release Process",
-    usual: "Manual regression cycles that stretch releases from days to weeks.",
-    ours: "Automated, continuous quality built into every release pipeline.",
-  },
-  {
-    category: "Engineering Delivery",
-    usual: "Ticket-queue outsourcing with limited architectural context.",
-    ours: "Senior engineers embedded directly in your architecture and roadmap.",
-  },
-  {
-    category: "Scale & Support",
-    usual: "Single-timezone teams with coverage gaps outside business hours.",
-    ours: "24/7 coverage across onshore US and offshore India delivery teams.",
-  },
-];
-
-
 
 const SOLUTIONS = [
   { title: "Quality Assurance", href: "/services/quality-assurance", icon: ShieldCheckIcon },
@@ -226,6 +215,21 @@ export default function Home() {
     <main>
       <ModernHero />
 
+      <div className={styles.statsWrap}>
+        <FadeIn delay={0.1}>
+          <div className={styles.stats}>
+            {STATS.map((stat) => (
+              <div key={stat.label} className={styles.stat}>
+                <div className={styles.statValue}>
+                  <AnimatedStat value={stat.value} delay={700} duration={1800} />
+                </div>
+                <div className={styles.statLabel}>{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+      </div>
+
       {/* Technology partner strip */}
       <FadeIn>
         <div className={styles.partnerStrip}>
@@ -240,38 +244,10 @@ export default function Home() {
         </div>
       </FadeIn>
 
-      {/* Usual way vs NForceOne way */}
-      <section id="impact-stats" className={styles.section}>
-        <FadeIn>
-          <div className={styles.sectionHead}>
-            <p className={styles.sectionEyebrow}>The Difference</p>
-            <AnimatedHeading
-              as="h2"
-              variant="style1"
-              text="Eliminate Bottlenecks. Accelerate Delivery."
-            />
-          </div>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <div className={styles.comparisonToggleWrap}>
-            <div className={styles.comparisonToggle}>
-              <span className={styles.comparisonToggleInactive}>The Usual Way</span>
-              <span className={styles.comparisonToggleActive}>The NForceOne Way</span>
-            </div>
-          </div>
-        </FadeIn>
-        <div className={styles.comparisonRows}>
-          {COMPARISON_ROWS.map((row, i) => (
-            <FadeIn key={row.category} delay={0.15 + i * 0.08}>
-              <div className={styles.comparisonRow}>
-                <span className={styles.comparisonCategory}>{row.category}</span>
-                <span className={styles.comparisonArrow} aria-hidden="true">→</span>
-                <span className={styles.comparisonValue}>{row.ours}</span>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-      </section>
+      {/* The NForceOne Standard */}
+      <div id="impact-stats">
+        <StandardCards />
+      </div>
 
       {/* Enterprise Impact Bento Grid */}
       <AboutBento />
@@ -308,8 +284,8 @@ export default function Home() {
             <div className={styles.collageGrid}>
               <div className={styles.collageMain}>
                 <Image
-                  src="/images/team-1.png"
-                  alt="NForceOne engineering team in Hyderabad"
+                  src="/images/office-exterior.png"
+                  alt="NForceOne office at Sanali Spazio, Hyderabad"
                   width={800}
                   height={368}
                   className={styles.collageImg}
