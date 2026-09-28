@@ -27,7 +27,11 @@ export default function ModernHero() {
           fill
           priority
           sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "70% center" }}
+          style={{
+            objectFit: "cover",
+            objectPosition: "70% center",
+            filter: "brightness(1.15) saturate(1.2) contrast(1.05)",
+          }}
         />
       </div>
       <div className={styles.heroOverlay} aria-hidden="true" />
@@ -73,7 +77,7 @@ export default function ModernHero() {
             Talk to an Expert
           </Link>
           <Link href="/services" className={styles.textLink}>
-            Explore Solutions
+            Explore Services
             <span className={styles.textLinkArrow} aria-hidden="true">→</span>
           </Link>
         </motion.div>

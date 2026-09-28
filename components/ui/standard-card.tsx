@@ -42,23 +42,23 @@ const Card: React.FC<CardProps> = ({ title, description, Icon, index }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      className="relative bg-white p-8 md:p-9 rounded-4xl md:rounded-[2.5rem] flex flex-col h-64 md:h-72 w-[calc(100vw-48px)] md:w-95 transition-all duration-500 group"
+      className="relative bg-white p-6 md:p-7 rounded-3xl md:rounded-[2rem] flex flex-col h-56 md:h-60 w-[calc(100vw-48px)] md:w-72 transition-all duration-500 group"
     >
       <div style={{ transform: "translateZ(50px)" }} className="flex flex-col h-full">
-        <div className="mb-5 md:mb-6 w-14 h-14 md:w-16 md:h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-black group-hover:bg-[#e60000] group-hover:text-white transition-all duration-500 ease-out shadow-sm group-hover:shadow-xl">
-          <Icon size={28} strokeWidth={1.2} className="md:w-8 md:h-8" />
+        <div className="mb-4 md:mb-5 w-12 h-12 md:w-14 md:h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-black group-hover:bg-[#e60000] group-hover:text-white transition-all duration-500 ease-out shadow-sm group-hover:shadow-xl">
+          <Icon size={24} strokeWidth={1.2} className="md:w-7 md:h-7" />
         </div>
 
-        <h3 className="text-2xl md:text-3xl font-bold text-black mb-3 md:mb-4 tracking-tight">
+        <h3 className="text-xl md:text-2xl font-bold text-black mb-2 md:mb-3 tracking-tight">
           {title}
         </h3>
 
-        <p className="text-gray-500 text-base md:text-lg leading-relaxed font-light line-clamp-3 md:line-clamp-none">
+        <p className="text-gray-500 text-sm md:text-base leading-relaxed font-light line-clamp-3 md:line-clamp-none">
           {description}
         </p>
       </div>
 
-      <div className="absolute inset-0 rounded-4xl md:rounded-[2.5rem] bg-black/5 -z-10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-8 scale-95" />
+      <div className="absolute inset-0 rounded-3xl md:rounded-[2rem] bg-black/5 -z-10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-8 scale-95" />
     </motion.div>
   );
 };
@@ -94,6 +94,13 @@ export function StandardCards(): React.ReactElement {
   const handleSectionMouseMove = (e: React.MouseEvent<HTMLDivElement>): void => {
     const rect = e.currentTarget.getBoundingClientRect();
     setSpotlight({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
+  const handleCarouselWheel = (e: React.WheelEvent<HTMLDivElement>): void => {
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      window.scrollBy({ top: e.deltaY, behavior: "auto" });
+    }
   };
 
   return (
@@ -138,8 +145,9 @@ export function StandardCards(): React.ReactElement {
 
           <div className="relative w-full max-w-[1200px] mx-auto">
             <div
-              className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-4 pt-4 px-4 md:px-6 scroll-smooth justify-center"
+              className="flex gap-5 md:gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-4 pt-4 px-4 md:px-6 scroll-smooth justify-center"
               style={{ perspective: "2000px" }}
+              onWheel={handleCarouselWheel}
             >
               {CARDS.map((card, idx) => (
                 <div key={card.title} className="snap-center shrink-0">

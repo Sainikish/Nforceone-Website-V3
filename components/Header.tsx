@@ -161,34 +161,13 @@ export default function Header() {
     closeDropdown();
   }, [pathname]);
 
-  const isHome = pathname === "/";
-  const [scrolledPastHero, setScrolledPastHero] = useState(!isHome);
-
-  useEffect(() => {
-    if (!isHome) {
-      setScrolledPastHero(true);
-      return;
-    }
-
-    const handleScroll = () => {
-      setScrolledPastHero(window.scrollY > 450);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isHome]);
-
-  const showLogo = !isHome || scrolledPastHero;
-
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
         <Link
           href="/"
-          className={`${styles.logo} ${showLogo ? styles.logoVisible : styles.logoHidden}`}
+          className={styles.logo}
           aria-label="NForceOne Home"
-          tabIndex={showLogo ? 0 : -1}
         >
           <Image
             src="/images/nforceone-logo-clean.png"
@@ -251,62 +230,64 @@ export default function Header() {
                 {dropdownOpen && link.groups && (
                   <div
                     className={styles.navMegaMenu}
-                    role="menu"
                     onMouseEnter={() => handleMouseEnter(link.href)}
                     onMouseLeave={handleMouseLeave}
                   >
-                    {link.groups.map((group) => (
-                      <div key={group.title} className={styles.megaGroup}>
-                        <p className={styles.megaGroupTitle}>{group.title}</p>
-                        {group.items.map((sub) => (
-                          <Link
-                            key={sub.href}
-                            href={sub.href}
-                            className={styles.navDropdownLink}
-                            role="menuitem"
-                            onClick={closeDropdown}
-                          >
-                            {sub.label}
-                          </Link>
-                        ))}
-                      </div>
-                    ))}
-                    <Link
-                      href={link.href}
-                      className={styles.navMegaMenuViewAll}
-                      role="menuitem"
-                      onClick={closeDropdown}
-                    >
-                      {link.viewAllLabel} →
-                    </Link>
+                    <div className={styles.navMegaMenuCard} role="menu">
+                      {link.groups.map((group) => (
+                        <div key={group.title} className={styles.megaGroup}>
+                          <p className={styles.megaGroupTitle}>{group.title}</p>
+                          {group.items.map((sub) => (
+                            <Link
+                              key={sub.href}
+                              href={sub.href}
+                              className={styles.navDropdownLink}
+                              role="menuitem"
+                              onClick={closeDropdown}
+                            >
+                              {sub.label}
+                            </Link>
+                          ))}
+                        </div>
+                      ))}
+                      <Link
+                        href={link.href}
+                        className={styles.navMegaMenuViewAll}
+                        role="menuitem"
+                        onClick={closeDropdown}
+                      >
+                        {link.viewAllLabel} →
+                      </Link>
+                    </div>
                   </div>
                 )}
                 {dropdownOpen && !link.groups && (
                   <div
                     className={styles.navDropdown}
-                    role="menu"
                     onMouseEnter={() => handleMouseEnter(link.href)}
                     onMouseLeave={handleMouseLeave}
                   >
-                    {link.dropdown.map((sub) => (
+                    <div className={styles.navDropdownCard} role="menu">
+                      {link.dropdown.map((sub) => (
+                        <Link
+                          key={sub.href}
+                          href={sub.href}
+                          className={styles.navDropdownLink}
+                          role="menuitem"
+                          onClick={closeDropdown}
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
                       <Link
-                        key={sub.href}
-                        href={sub.href}
-                        className={styles.navDropdownLink}
+                        href={link.href}
+                        className={styles.navDropdownViewAll}
                         role="menuitem"
                         onClick={closeDropdown}
                       >
-                        {sub.label}
+                        {link.viewAllLabel} →
                       </Link>
-                    ))}
-                    <Link
-                      href={link.href}
-                      className={styles.navDropdownViewAll}
-                      role="menuitem"
-                      onClick={closeDropdown}
-                    >
-                      {link.viewAllLabel} →
-                    </Link>
+                    </div>
                   </div>
                 )}
               </div>

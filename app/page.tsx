@@ -258,7 +258,7 @@ export default function Home() {
       <section className={styles.section}>
         <FadeIn>
           <div className={styles.sectionHead}>
-            <p className={styles.sectionEyebrow}>Solutions</p>
+            <p className={styles.sectionEyebrow}>Services</p>
             <AnimatedHeading as="h2" variant="style1" text="End-to-End Services for Every Stage" />
           </div>
         </FadeIn>

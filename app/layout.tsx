@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   },
   description:
     "NForceOne is an AI, Quality Engineering, and Digital Transformation partner with deep Telecom expertise, delivering at enterprise scale through onshore US and offshore India teams.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

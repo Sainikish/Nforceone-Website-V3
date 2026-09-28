@@ -197,7 +197,7 @@ export function FeatureCarousel({
                   }}
                   animate={{
                     y: wrappedDistance * ITEM_HEIGHT,
-                    opacity: 1 - Math.abs(wrappedDistance) * 0.25,
+                    opacity: Math.max(1 - Math.abs(wrappedDistance) * 0.15, 0.75),
                   }}
                   transition={{
                     type: "spring",
@@ -215,7 +215,7 @@ export function FeatureCarousel({
                       "relative flex items-center gap-4 px-6 md:px-10 lg:px-8 py-3.5 md:py-5 lg:py-4 rounded-full transition-all duration-700 text-left group border",
                       isActive
                         ? "bg-white border-white z-10 shadow-lg"
-                        : "bg-transparent text-white/60 border-white/20 hover:border-white/40 hover:text-white"
+                        : "bg-transparent text-white border-white/20 hover:border-white/40 hover:text-white"
                     )}
                     style={{
                       color: isActive ? themeColor : undefined,
@@ -224,7 +224,7 @@ export function FeatureCarousel({
                     <div
                       className={cn(
                         "flex items-center justify-center transition-colors duration-500",
-                        isActive ? "" : "text-white/40"
+                        isActive ? "" : "text-white/85"
                       )}
                       style={{
                         color: isActive ? themeColor : undefined,
